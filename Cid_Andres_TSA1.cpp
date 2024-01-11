@@ -1,10 +1,14 @@
 #include <iostream>
 #include <windows.h>
 #include <stdlib.h>
+#include <string>
 
 using namespace std;
 
 int menuChoice;
+string itemName;
+float itemPrice;
+
 
 void lineBIG(){
 	
@@ -19,8 +23,13 @@ void lineSMALL(){
 }
 
 void addItem (){
-	
-	
+	cout << "Enter item name: ";
+	cin >> itemName;
+	cout << "Enter item price: ";
+	cin >> itemPrice;
+	system("pause");
+	system("cls");
+	return menu();
 	
 }
 
@@ -53,13 +62,14 @@ void menu(){
 	
 	lineSMALL();
 	
-	cout << "Enter your choice:";
+	cout << "Enter your choice: ";
 	cin >> menuChoice;
 	
 	switch (menuChoice){
 		
 		case 1:
 			
+			system("cls");
 			addItem();
 			break;
 		
