@@ -11,7 +11,7 @@ using namespace std;
 int menuChoice, menuS = 0, orderS = 0, orderChoice, orderAmount;
 string itemName, menuI[5], orderName, orderI[5];
 char orderYesOrNo;
-float itemPrice, menuP[5], orderItemTotal, orderPayment;
+float itemPrice, menuP[5], orderItemTotal, orderPayment, change;
 
 void menu();
 void sleep();
@@ -121,9 +121,17 @@ void checkOut(){
 		
 	}else if (orderPayment >= orderItemTotal){
 		
-		cout << "Total Bill: " << endl;
-		cout << "Payment: " << endl;
-		cout << "Change: " << endl;
+		system("cls");
+		
+		change = orderPayment - orderItemTotal;
+		
+		cout << "Total Bill: " << orderItemTotal << endl;
+		cout << "Payment: " << orderPayment << endl;
+		cout << "Change: " << change << endl;
+		
+		system("pause");
+		system("cls");
+		menu();
 		
 	}
 	
