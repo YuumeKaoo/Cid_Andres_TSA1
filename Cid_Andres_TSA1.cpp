@@ -10,6 +10,7 @@ using namespace std;
 
 int menuChoice, menuS = 0, orderS = 0, orderChoice, orderAmount;
 string itemName, menuI[5], orderName, orderI[5];
+char orderYesOrNo;
 float itemPrice, menuP[5], orderItemTotal;
 
 void menu();
@@ -73,7 +74,33 @@ void orderItem(){
 		
 		orderItemTotal = itemPrice * orderAmount;
 		
-		cout << "You have ordered " << orderAmount << " " << orderName << " priced at " << orderItemTotal;
+		cout << "You have ordered " << orderAmount << " " << orderName << " priced at " << orderItemTotal << "." << endl;
+		cout << "Add another item? Y/N: ";
+		cin >> orderYesOrNo;
+		
+		switch (orderYesOrNo){
+			
+			case 'Y':
+				
+				system("cls");
+				orderItem();
+				break;
+				
+			case 'N':
+				
+				system("pause");
+				system("cls");
+				return menu();
+				break;
+			
+			default:
+				
+				cout << "Invalid choice. Please enter a valid option.\n";
+				system("pause");
+				system("cls");
+				menu();
+				break;
+		}
 		
 	}
 	
@@ -149,7 +176,7 @@ void menu(){
 			system("pause");
 			system("cls");
 			menu();
-		
+		    break;
 	}
 	
 }
