@@ -1,18 +1,23 @@
 #include <iostream>
+#include <iomanip>
 #include <windows.h>
 #include <stdlib.h>
 #include <string>
+#include <math.h>
+#include <cmath>
 
 using namespace std;
 
-int menuChoice;
-string itemName;
-float itemPrice;
+int menuChoice, menuS = 0, orderS = 0, orderChoice, orderAmount;
+string itemName, menuI[5], orderName, orderI[5];
+float itemPrice, menuP[5], orderItemTotal;
 
+void menu();
+void sleep();
 
 void lineBIG(){
 	
-	cout << "---------------------------------" << endl;
+	cout << "---------------------------------------" << endl;
 	
 }
 
@@ -24,18 +29,53 @@ void lineSMALL(){
 
 void addItem (){
 	cout << "Enter item name: ";
+	cin.clear();
 	cin >> itemName;
+	menuI[menuS] = itemName;
+	
 	cout << "Enter item price: ";
+	cin.clear();
 	cin >> itemPrice;
+	menuP[menuS] = itemPrice;
+	
+	cout << "You selected: " << menuI[menuS] << endl;
 	system("pause");
 	system("cls");
+	sleep();
+	system("cls");
+	menuS++;
 	return menu();
 	
 }
 
 void orderItem(){
 	
-	
+	if (menuS == 0){
+		
+		cout << "There are no items yet!" << endl;
+		system("pause");
+		system("cls");
+		return menu();
+		
+	}else{
+		
+		for (int i = 0; i <= menuS - 1; i++)
+		cout << setw(menuI[i].length()) << menuI[i] << "\t\t\t\t\t\t" << fixed << setprecision(2) << menuP[i] << endl;
+		
+		lineBIG();
+		
+		cout << "What is your order: ";
+		cin >> orderChoice;
+		orderI[orderS] = menuI[orderChoice];
+		
+		cout << "How many?: "
+		cin >> orderAmount;
+		
+		orderItemTotal = menuI[menuP] * orderAmount;
+		
+		cout << orderItemTotal;
+		
+	}
 	
 }
 
@@ -51,7 +91,19 @@ void exit(){
 	
 }
 
+void sleep(){
+	
+	cout << "Loading";
+    for (int i = 0; i <=4; i++){
+    	Sleep(150);
+    	cout << ".";
+}
+	
+}
+
 void menu(){
+	
+	lineBIG();
 	
 	cout << "Hell's Kitchen Self-Service Restaurant\n" << endl;
 	
@@ -60,7 +112,7 @@ void menu(){
 	cout << "3. Checkout" << endl;
 	cout << "4. Exit" << endl;
 	
-	lineSMALL();
+	lineBIG();
 	
 	cout << "Enter your choice: ";
 	cin >> menuChoice;
@@ -70,11 +122,14 @@ void menu(){
 		case 1:
 			
 			system("cls");
+			sleep();
+			system("cls");
 			addItem();
 			break;
 		
 		case 2:
 			
+			system("cls");
 			orderItem();
 			break;
 		
