@@ -8,7 +8,7 @@
 
 using namespace std;
 
-int menuChoice, menuS = 0, orderS = 0, orderChoice, orderAmount;
+int menuChoice, menuS = 0, orderS = 0, orderChoice, orderAmount, orderMultiplier = 0;
 string itemName, menuI[5], orderName, orderI[5];
 float itemPrice, menuP[5], orderItemTotal;
 
@@ -68,12 +68,12 @@ void orderItem(){
 		cin >> orderChoice;
 		orderI[orderS] = menuI[orderChoice];
 		
-		cout << "How many?: "
+		cout << "How many?: ";
 		cin >> orderAmount;
 		
-		orderItemTotal = menuI[menuP] * orderAmount;
+		orderItemTotal = orderMultiplier * orderAmount;
 		
-		cout << orderItemTotal;
+		cout << "You have ordered";
 		
 	}
 	
