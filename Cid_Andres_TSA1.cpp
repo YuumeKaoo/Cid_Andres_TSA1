@@ -11,7 +11,7 @@ using namespace std;
 int menuChoice, menuS = 0, orderS = 0, orderChoice, orderAmount;
 string itemName, menuI[5], orderName, orderI[5];
 char orderYesOrNo;
-float itemPrice, menuP[5], orderItemTotal;
+float itemPrice, menuP[5], orderItemTotal, orderPayment;
 
 void menu();
 void sleep();
@@ -80,13 +80,13 @@ void orderItem(){
 		
 		switch (orderYesOrNo){
 			
-			case 'Y':
+			case 'Y': case 'y':
 				
 				system("cls");
 				orderItem();
 				break;
 				
-			case 'N':
+			case 'N': case 'n':
 				
 				system("pause");
 				system("cls");
@@ -100,6 +100,7 @@ void orderItem(){
 				system("cls");
 				menu();
 				break;
+				
 		}
 		
 	}
@@ -107,6 +108,10 @@ void orderItem(){
 }
 
 void checkOut(){
+	
+	cout << "Your total bill is: " << orderItemTotal << endl;
+	cout << "Please input your payment: ";
+	cin >> orderPayment;
 	
 	
 	
@@ -177,6 +182,7 @@ void menu(){
 			system("cls");
 			menu();
 		    break;
+		    
 	}
 	
 }
