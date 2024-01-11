@@ -110,10 +110,22 @@ void orderItem(){
 void checkOut(){
 	
 	cout << "Your total bill is: " << orderItemTotal << endl;
+	Payment:
 	cout << "Please input your payment: ";
 	cin >> orderPayment;
 	
-	
+	if (orderPayment < orderItemTotal){
+		
+		cout << "Payment is insufficient. Please pay again!" << endl;
+		goto Payment;
+		
+	}else if (orderPayment >= orderItemTotal){
+		
+		cout << "Total Bill: " << endl;
+		cout << "Payment: " << endl;
+		cout << "Change: " << endl;
+		
+	}
 	
 }
 
