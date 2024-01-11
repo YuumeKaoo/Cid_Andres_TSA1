@@ -8,7 +8,7 @@
 
 using namespace std;
 
-int menuChoice, menuS = 0, orderS = 0, orderChoice, orderAmount, orderMultiplier = 0;
+int menuChoice, menuS = 0, orderS = 0, orderChoice, orderAmount;
 string itemName, menuI[5], orderName, orderI[5];
 float itemPrice, menuP[5], orderItemTotal;
 
@@ -30,8 +30,8 @@ void lineSMALL(){
 void addItem (){
 	cout << "Enter item name: ";
 	cin.clear();
-	cin >> itemName;
-	menuI[menuS] = itemName;
+	cin >> orderName;
+	menuI[menuS] = orderName;
 	
 	cout << "Enter item price: ";
 	cin.clear();
@@ -71,9 +71,9 @@ void orderItem(){
 		cout << "How many?: ";
 		cin >> orderAmount;
 		
-		orderItemTotal = orderMultiplier * orderAmount;
+		orderItemTotal = itemPrice * orderAmount;
 		
-		cout << "You have ordered";
+		cout << "You have ordered " << orderAmount << " " << orderName << " priced at " << orderItemTotal;
 		
 	}
 	
