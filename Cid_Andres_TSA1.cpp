@@ -8,8 +8,8 @@
 
 using namespace std;
 
-int menuChoice, menuS = 0, orderS = 0, orderChoice, orderAmount;
-string itemName, menuI[5], orderName, orderI[5];
+int menuChoice, menuS = 0, orderS = 0, orderAmount;
+string itemName, menuI[5], orderI[5], orderName;
 char orderYesOrNo;
 float itemPrice, menuP[5], orderItemTotal, orderPayment, change;
 
@@ -31,7 +31,8 @@ void lineSMALL(){
 void addItem (){
 	cout << "Enter item name: ";
 	cin.clear();
-	cin >> orderName;
+	cin.ignore();
+	getline(cin, orderName);
 	menuI[menuS] = orderName;
 	
 	cout << "Enter item price: ";
@@ -40,16 +41,18 @@ void addItem (){
 	menuP[menuS] = itemPrice;
 	
 	cout << "You selected: " << menuI[menuS] << endl;
+	menuS++;
 	system("pause");
 	system("cls");
 	sleep();
 	system("cls");
-	menuS++;
 	return menu();
 	
 }
 
 void orderItem(){
+	
+	int orderChoice;
 	
 	if (menuS == 0){
 		
@@ -67,14 +70,15 @@ void orderItem(){
 		
 		cout << "What is your order: ";
 		cin >> orderChoice;
+		orderChoice -= 1;
 		orderI[orderS] = menuI[orderChoice];
 		
 		cout << "How many?: ";
 		cin >> orderAmount;
 		
-		orderItemTotal = itemPrice * orderAmount;
+		orderItemTotal += menuP[orderChoice] * orderAmount;
 		
-		cout << "You have ordered " << orderAmount << " " << orderName << " priced at " << orderItemTotal << "." << endl;
+		cout << "You have ordered " << orderAmount << " " << menuI[orderChoice] << "." << endl;
 		cout << "Add another item? Y/N: ";
 		cin >> orderYesOrNo;
 		
