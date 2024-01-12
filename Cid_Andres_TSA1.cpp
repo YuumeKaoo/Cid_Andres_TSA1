@@ -35,18 +35,33 @@ void addItem (){
 	getline(cin, orderName);
 	menuI[menuS] = orderName;
 	
+	Pricing:
 	cout << "Enter item price: ";
 	cin.clear();
 	cin >> itemPrice;
 	menuP[menuS] = itemPrice;
 	
-	cout << "You selected: " << menuI[menuS] << endl;
-	menuS++;
-	system("pause");
-	system("cls");
-	sleep();
-	system("cls");
-	return menu();
+	if(itemPrice < 0){
+		
+		cout << "This price is invalid. Please try again." << endl;
+		goto Pricing;
+		
+	}else if(itemPrice >= 2147483647){
+		
+		cout << "This price is invalid. Please try again." << endl;
+		goto Pricing;
+		
+	}else{
+		
+		cout << "You added: " << menuI[menuS] << endl;
+		menuS++;
+		system("pause");
+		system("cls");
+		sleep();
+		system("cls");
+		return menu();
+		
+	}
 	
 }
 
@@ -68,43 +83,68 @@ void orderItem(){
 		
 		lineBIG();
 		
+		OrderChoice:
 		cout << "What is your order: ";
 		cin >> orderChoice;
 		orderChoice -= 1;
 		orderI[orderS] = menuI[orderChoice];
 		
-		cout << "How many?: ";
-		cin >> orderAmount;
-		
-		orderItemTotal += menuP[orderChoice] * orderAmount;
-		
-		cout << "You have ordered " << orderAmount << " " << menuI[orderChoice] << "." << endl;
-		cout << "Add another item? Y/N: ";
-		cin >> orderYesOrNo;
-		
-		switch (orderYesOrNo){
+		if(orderChoice > menuS - 1){
 			
-			case 'Y': case 'y':
-				
-				system("cls");
-				orderItem();
-				break;
-				
-			case 'N': case 'n':
-				
-				system("pause");
-				system("cls");
-				return menu();
-				break;
+			cout << "This amount is invalid. Please try again." << endl;
+			goto OrderChoice;
 			
-			default:
+		}else{
+			
+			OrderCount:
+			cout << "How many?: ";
+			cin >> orderAmount;
+			
+			if(orderAmount <= 0){
+		
+				cout << "This amount is invalid. Please try again." << endl;
+				goto OrderCount;
+		
+			}else if(orderAmount >= 2147483647){
+		
+				cout << "This amount is invalid. Please try again." << endl;
+				goto OrderCount;
+		
+			}else{
 				
-				cout << "Invalid choice. Please enter a valid option.\n";
-				system("pause");
-				system("cls");
-				menu();
-				break;
+				orderItemTotal += menuP[orderChoice] * orderAmount;
+			
+				cout << "You have ordered " << orderAmount << " " << menuI[orderChoice] << "." << endl;
+				cout << "Add another item? Y/N: ";
+				cin >> orderYesOrNo;
 				
+				switch (orderYesOrNo){
+					
+					case 'Y': case 'y':
+						
+						system("cls");
+						orderItem();
+						break;
+						
+					case 'N': case 'n':
+						
+						system("pause");
+						system("cls");
+						return menu();
+						break;
+					
+					default:
+						
+						cout << "Invalid choice. Please enter a valid option.\n";
+						system("pause");
+						system("cls");
+						menu();
+						break;
+					
+				}
+				
+			}
+			
 		}
 		
 	}
@@ -143,7 +183,8 @@ void checkOut(){
 
 void exit(){
 	
-	abort();
+	cout << "\nThank you for coming to Hell's Kitchen Self-Service Restaurant. Please come again!\n ";
+	exit(0);
 	
 }
 
